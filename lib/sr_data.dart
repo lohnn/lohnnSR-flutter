@@ -18,9 +18,10 @@ class Program {
   factory Program.fromMap(Map map) => new Program._(
         name: map["name"],
         description: map["description"],
-        programImage: map["programimag"],
+        programImage: map["programimage"],
         programImagewide: map["programimagewide"],
-        socialMediaPlatforms: new List(),
+        socialMediaPlatforms:
+            SocialMedia.fromMapList(map["socialmediaplatforms"]),
       );
 }
 
@@ -32,6 +33,9 @@ class SocialMedia {
     @required this.platform,
     @required this.platformUrl,
   });
+
+  static List<SocialMedia> fromMapList(List list) =>
+      list.map((map) => new SocialMedia.fromMap(map)).toList();
 
   factory SocialMedia.fromMap(Map map) => new SocialMedia._(
         platform: map["platform"],
